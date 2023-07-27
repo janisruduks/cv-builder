@@ -3,7 +3,7 @@ import { FormFields } from "@/components/FormIntro";
 import { PageCV } from "@/components/PageCV";
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import { Button, Layout, Row, Col } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export interface FormData {
   name: string;
@@ -17,6 +17,11 @@ export interface FormData {
 
 export default function Home() {
   const { Header } = Layout;
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   const [data, setData] = useState<FormData>({
     name: "",
     email: "",
@@ -44,17 +49,21 @@ export default function Home() {
           </Col>
           <Col span={12}>
             <div className="m-3">
-              <PDFDownloadLink document={<PageCV name={data.name} email={data.email} phone={data.phone} />} fileName="somename.pdf">
-                {({ blob, url, loading, error }) =>
-                  loading ? 'Loading document...' : <Button className="bg-white">Download now!</Button>
-                }
-              </PDFDownloadLink>
+              {isClient ?
+                <PDFDownloadLink document={<PageCV name={data.name} email={data.email} phone={data.phone} />} fileName="somename.pdf">
+                  {({ blob, url, loading, error }) =>
+                    loading ? 'Loading document...' : <Button className="bg-white">Download now!</Button>
+                  }
+                </PDFDownloadLink>
+                : null}
             </div>
-            <div style={{ height: '100vh', flexGrow: 1 }}>
-              <PDFViewer showToolbar={false} style={{ width: '100%', height: '100%' }}>
-                <PageCV name={data.name} email={data.email} phone={data.phone} />
-              </PDFViewer>
-            </div>
+            {isClient ?
+              <div style={{ height: '100vh', flexGrow: 1 }}>
+                <PDFViewer showToolbar={false} style={{ width: '100%', height: '100%' }}>
+                  <PageCV name={data.name} email={data.email} phone={data.phone} />
+                </PDFViewer>
+              </div>
+              : null}
           </Col>
         </Row>
       </div>
