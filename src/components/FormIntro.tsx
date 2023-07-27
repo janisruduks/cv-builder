@@ -7,7 +7,7 @@ interface Props {
 }
 type ParentFnType = (data: FormData) => void
 
-export function FormFields( { parentFn }: Props ) {
+export function FormFields({ parentFn }: Props) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",

@@ -1,7 +1,7 @@
 'use client';
 import { FormFields } from "@/components/FormIntro";
 import { PageCV } from "@/components/PageCV";
-import { PDFViewer, PDFDownloadLink, Page } from '@react-pdf/renderer';
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import { Button, Layout, Row, Col } from "antd";
 import { useState } from "react";
 
@@ -46,7 +46,7 @@ export default function Home() {
             <div className="m-3">
               <PDFDownloadLink document={<PageCV name={data.name} email={data.email} phone={data.phone} />} fileName="somename.pdf">
                 {({ blob, url, loading, error }) =>
-                  loading ? 'Loading document...' : <Button className="bg-white">Download now!</Button> 
+                  loading ? 'Loading document...' : <Button className="bg-white">Download now!</Button>
                 }
               </PDFDownloadLink>
             </div>
