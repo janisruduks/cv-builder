@@ -1,55 +1,29 @@
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+import React from 'react';
+import { MailOutlined, PhoneOutlined, LinkOutlined, GlobalOutlined } from '@ant-design/icons';
 
-const styles = StyleSheet.create({
-    page: {
-        flexDirection: 'row',
-        backgroundColor: '#ffffff'
-    },
-    section: {
-        flexGrow: 1,
-        padding: 20,
-        alignItems: 'center',
-    },
-    nameText: {
-        color: 'black',
-        fontSize: 30,
-        fontFamily: 'Courier-Bold',
-    },
-    heading: {
-        color: 'blue',
-        fontSize: 20,
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    content: {
-        color: 'black',
-        fontSize: 12,
-        marginBottom: 10,
-    },
-});
 
-export const PageCV = ({ name, email, phone }: any) => {
-
+export const PageCV = ({ name, email, phone, website, objective, location }: any) => {
     return (
-        <Document>
-            <Page size="A4" style={styles.page}>
-                <View style={styles.section}>
-                    <Text style={styles.nameText}>{name}</Text>
-                    <Text style={styles.heading}>Contact Information</Text>
-                    <Text style={styles.content}>Email: {email}</Text>
-                    <Text style={styles.content}>Phone {phone}</Text>
-                    <Text style={styles.heading}>Education</Text>
-                    <Text style={styles.content}>B.Sc. Computer Science, XYZ University, 2010</Text>
-                    <Text style={styles.content}>M.Sc. Software Engineering, ABC University, 2012</Text>
-                    <Text style={styles.heading}>Work Experience</Text>
-                    <Text style={styles.content}>
-                        Senior Software Engineer, Company A, 2012 - Present
-                    </Text>
-                    <Text style={styles.content}>
-                        Software Engineer, Company B, 2010 - 2012
-                    </Text>
-                </View>
-            </Page>
-        </Document>
+        <div className="bg-white p-4 h-screen border-black border-4">
+            <h1 className="text-2xl font-bold">{name}</h1>
+            <p className='font-semibold mb-4'>{objective}</p>
+            <div className="flex items-center mb-2">
+                <MailOutlined className="mr-2" />
+                <p>{email}</p>
+            </div>
+            <div className="flex items-center mb-2">
+                <PhoneOutlined className="mr-2" />
+                <p>{phone}</p>
+            </div>
+            <div className="flex items-center mb-2">
+                <LinkOutlined className="mr-2" />
+                <p>{website}</p>
+            </div>
+            <div className='flex items-center'>
+                <GlobalOutlined className='mr-2' />
+                <p>{location}</p>
+            </div>
+        </div>
     );
 };
+

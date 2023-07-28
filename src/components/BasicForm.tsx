@@ -7,14 +7,14 @@ interface Props {
 }
 type ParentFnType = (data: FormData) => void
 
-export function FormFields({ parentFn }: Props) {
+export default function BasicForm({ parentFn }: Props) {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    website: "",
-    location: "",
-    objective: "",
+    name: "James Gordon",
+    email: "info@info.com",
+    phone: "(123) 456 789",
+    website: "linkedin.com/u/jamesgordon",
+    location: "Riga, Latvia",
+    objective: "Software Developer",
   });
 
   parentFn(formData);
@@ -25,7 +25,7 @@ export function FormFields({ parentFn }: Props) {
   }
 
   return (
-    <div className="bg-white p-3 m-5 w-5/6 rounded-md shadow-md">
+    <div className="bg-white m-5 w-5/6 rounded-md shadow-md">
       <Form layout="vertical" className="p-3">
         <Form.Item className="font-semibold" label="Name">
           <Input

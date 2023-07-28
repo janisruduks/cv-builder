@@ -1,9 +1,9 @@
 'use client';
-import { FormFields } from "@/components/FormIntro";
+import BasicForm from "@/components/BasicForm";
+import EducationForm from "@/components/EducationForm";
 import { PageCV } from "@/components/PageCV";
-import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import { Button, Layout, Row, Col } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export interface FormData {
   name: string;
@@ -17,11 +17,7 @@ export interface FormData {
 
 export default function Home() {
   const { Header } = Layout;
-  const [isClient, setIsClient] = useState(false)
 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
   const [data, setData] = useState<FormData>({
     name: "",
     email: "",
@@ -45,25 +41,18 @@ export default function Home() {
       <div className="container mx-auto p-4">
         <Row>
           <Col span={12} className="">
-            <FormFields parentFn={parentFn} />
+            <BasicForm parentFn={parentFn} />
+            <EducationForm />
           </Col>
           <Col span={12}>
             <div className="m-3">
-              {isClient ?
-                <PDFDownloadLink document={<PageCV name={data.name} email={data.email} phone={data.phone} />} fileName="somename.pdf">
-                  {({ blob, url, loading, error }) =>
-                    loading ? 'Loading document...' : <Button className="bg-white">Download now!</Button>
-                  }
-                </PDFDownloadLink>
-                : null}
+              <Button className="bg-white">
+                <a href="/api/pdf" download="generated_pdf.pdf" className="downloadBtn">Download PDF</a>
+              </Button>
             </div>
-            {isClient ?
-              <div style={{ height: '100vh', flexGrow: 1 }}>
-                <PDFViewer showToolbar={false} style={{ width: '100%', height: '100%' }}>
-                  <PageCV name={data.name} email={data.email} phone={data.phone} />
-                </PDFViewer>
-              </div>
-              : null}
+            <div className="m-3">
+              <PageCV {...data} />
+            </div>
           </Col>
         </Row>
       </div>
