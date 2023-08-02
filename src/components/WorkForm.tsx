@@ -6,7 +6,9 @@ import { Form, Input, Typography, Button } from "antd";
 export default function WorkForm() {
     const { formData, setFormData } = useFormData();
 
-    function handleChange(index: number, event: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(index: number,
+        event: React.ChangeEvent<HTMLInputElement | HTMLInputElement>
+    ) {
         const { name, value } = event.target;
         const updatedWork = [...formData.work];
         updatedWork[index] = {
