@@ -1,27 +1,20 @@
-import React, { useState, ChangeEvent } from "react";
 import { Form, Input } from "antd";
-import { FormData } from '../app/page'
+import { useFormData } from "./FormDataContext";
 
-interface Props {
-  parentFn: ParentFnType;
-}
-type ParentFnType = (data: FormData) => void
+export default function BasicForm() {
+  const { formData, setFormData } = useFormData();
 
-export default function BasicForm({ parentFn }: Props) {
-  const [formData, setFormData] = useState<FormData>({
-    name: "James Gordon",
-    email: "info@info.com",
-    phone: "(123) 456 789",
-    website: "linkedin.com/u/jamesgordon",
-    location: "Riga, Latvia",
-    objective: "Software Developer",
-  });
-
-  parentFn(formData);
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      information: {
+        ...prevFormData.information,
+        [name]: value,
+      },
+    }));
   }
 
   return (
@@ -29,7 +22,7 @@ export default function BasicForm({ parentFn }: Props) {
       <Form layout="vertical" className="p-3">
         <Form.Item className="font-semibold" label="Name">
           <Input
-            value={formData.name}
+            value={formData.information.name}
             onChange={handleChange}
             name="name"
             className="font-normal shadow-sm"
@@ -38,7 +31,7 @@ export default function BasicForm({ parentFn }: Props) {
         </Form.Item>
         <Form.Item className="font-semibold" label="Objective">
           <Input
-            value={formData.objective}
+            value={formData.information.objective}
             onChange={handleChange}
             name="objective"
             className="font-normal"
@@ -49,7 +42,7 @@ export default function BasicForm({ parentFn }: Props) {
           <div className="basis-2/3">
             <Form.Item className="font-semibold" label="Email">
               <Input
-                value={formData.email}
+                value={formData.information.email}
                 onChange={handleChange}
                 name="email"
                 className="font-normal shadow-sm"
@@ -60,7 +53,7 @@ export default function BasicForm({ parentFn }: Props) {
           <div className="basis-1/3">
             <Form.Item className="font-semibold" label="Phone">
               <Input
-                value={formData.phone}
+                value={formData.information.phone}
                 onChange={handleChange}
                 name="phone"
                 className="font-normal shadow-sm"
@@ -73,7 +66,7 @@ export default function BasicForm({ parentFn }: Props) {
           <div className="basis-2/3">
             <Form.Item className="font-semibold" label="Website">
               <Input
-                value={formData.website}
+                value={formData.information.website}
                 onChange={handleChange}
                 name="website"
                 className="font-normal shadow-sm"
@@ -84,7 +77,7 @@ export default function BasicForm({ parentFn }: Props) {
           <div className="basis-1/3">
             <Form.Item className="font-semibold" label="Location">
               <Input
-                value={formData.location}
+                value={formData.information.location}
                 onChange={handleChange}
                 name="location"
                 className="font-normal shadow-sm"
@@ -93,6 +86,15 @@ export default function BasicForm({ parentFn }: Props) {
             </Form.Item>
           </div>
         </div>
+        <Form.Item className="font-semibold" label="About me">
+          <Input.TextArea
+            value={formData.information.description}
+            onChange={handleChange}
+            name="description"
+            className="font-normal shadow-sm"
+            placeholder="As an enthusiastic and dedicated professional with a passion for ...."
+          />
+        </Form.Item>
       </Form>
     </div>
   );

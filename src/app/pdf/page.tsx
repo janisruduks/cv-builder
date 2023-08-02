@@ -1,10 +1,16 @@
 'use client'
-import { PageCV } from "@/components/PageCV";
+import { FormDataProvider } from "@/components/FormDataContext";
+import PageCV from "@/components/PageCV";
+import React, { useEffect } from "react";
 
 export default function Page() {
+    useEffect(() => {
+        window.print();
+    }, []);
+
     return (
-        <div>
-            <PageCV email="hello" name="name" website="website" phone="2222" />
-        </div>
-    )
+        <FormDataProvider>
+            <PageCV />
+        </FormDataProvider>
+    );
 }
