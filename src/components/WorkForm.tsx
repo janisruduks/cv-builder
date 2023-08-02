@@ -7,7 +7,7 @@ export default function WorkForm() {
     const { formData, setFormData } = useFormData();
 
     function handleChange(index: number,
-        event: React.ChangeEvent<HTMLInputElement | HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) {
         const { name, value } = event.target;
         const updatedWork = [...formData.work];
