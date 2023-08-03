@@ -1,15 +1,15 @@
 'use client';
-import GitHubButton from 'react-github-btn'
 import BasicForm from "@/components/BasicForm";
 import EducationForm from "@/components/EducationForm";
-import { FormDataProvider } from "@/components/FormDataContext";
 import PageCV from "@/components/PageCV";
 import ProjectForm from "@/components/ProjectForm";
 import SkillsForm from "@/components/SkillsForm";
 import WorkForm from "@/components/WorkForm";
-import { Button, Layout } from "antd";
+import GitHubButton from 'react-github-btn'
 import Link from "next/link";
 import Image from 'next/image'
+import { FormDataProvider } from "@/components/FormDataContext";
+import { Button, Layout } from "antd";
 
 export default function Home() {
   const { Header } = Layout;
