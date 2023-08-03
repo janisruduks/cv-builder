@@ -8,6 +8,8 @@ import ProjectForm from "@/components/ProjectForm";
 import SkillsForm from "@/components/SkillsForm";
 import WorkForm from "@/components/WorkForm";
 import { Button, Layout } from "antd";
+import Link from "next/link";
+import Image from 'next/image'
 
 export default function Home() {
   const { Header } = Layout;
@@ -16,16 +18,19 @@ export default function Home() {
       <FormDataProvider>
         <Layout>
           <Header className="bg-white text-blue-500 shadow-sm flex flex-row">
-            <h1 className="font-bold flex-grow">
-              Resume Builder v.0002
-            </h1>
-            <div className="flex justify-end">
+            <Link href="/" className="font-bold">
+              <div className='flex-row flex'>
+                <Image width='64' height="128" alt='logo' src='/../public/logo.png' />
+                Resume Builder v.0002
+              </div>
+            </Link>
+            <div className="flex flex-grow justify-end">
               <GitHubButton
                 href="https://github.com/janisruduks/cv-generator"
                 data-icon="octicon-star"
                 aria-label="Star janisruduks/cv-generator on GitHub"
               >
-                Star on github
+                Star on GitHub
               </GitHubButton>
             </div>
           </Header>
