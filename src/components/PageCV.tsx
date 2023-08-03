@@ -6,7 +6,7 @@ import { useFormData } from './FormDataContext';
 export default function PageCV() {
   const { formData } = useFormData();
   return (
-    <div className="bg-white p-2 md:h-screen md:text-sm md:scale-100 text-xs">
+    <div className="bg-white md:h-screen md:text-sm md:scale-100 text-xs">
       <div className='items-center flex flex-col'>
         <h1 className="text-4xl font-bold">
           {formData.information.name}
@@ -17,15 +17,23 @@ export default function PageCV() {
         </h1>
       </div>
       <div className='flex items-center justify-center'>
-        <div className='flex gap-2 items-center font-light text-xs md:text-md sm:scale-100 scale-60'>
-          <MailOutlined />
-          <div>{formData.information.email}</div>
-          <PhoneOutlined />
-          <div>{formData.information.phone}</div>
-          <LinkOutlined />
-          <div>{formData.information.website}</div>
-          <GlobalOutlined />
-          <div>{formData.information.location}</div>
+        <div className="flex gap-2 items-center font-light text-xs md:text-md sm:scale-100 flex-wrap justify-center">
+          <div className='flex gap-1 items-center'>
+            <MailOutlined />
+            <div>{formData.information.email}</div>
+          </div>
+          <div className='flex gap-1 items-center'>
+            <PhoneOutlined />
+            <div>{formData.information.phone}</div>
+          </div>
+          <div className='flex gap-1 items-center'>
+            <LinkOutlined />
+            <div>{formData.information.website}</div>
+          </div>
+          <div className='flex gap-1 items-center'>
+            <GlobalOutlined />
+            <div>{formData.information.location}</div>
+          </div>
         </div>
       </div>
       <div className="text-center pr-12 pl-12 pt-4">
@@ -76,7 +84,7 @@ export default function PageCV() {
             </div>
             <div className='basis-1/6 flex items-center'>
               <a href={project.link} className="font-light whitespace-nowrap flex items-center">
-                <LinkOutlined style={{ fontSize: 10}} />
+                <LinkOutlined style={{ fontSize: 10 }} />
                 project link
               </a>
             </div>
@@ -87,16 +95,16 @@ export default function PageCV() {
           <h2 className='font-bold'>SKILLS</h2>
         </div>
         <div className='flex flex-wrap'>
-        {formData.skills.map((skills, index) => (
-          <div className='ml-4 mb-4 flex gap-2' key={index}>
-            <h1 className='font-semibold'>{skills.skill}</h1>
-            <h1>
-              {Array.from({ length: skills.rating }, (_, i) => (
-                <ThunderboltOutlined key={i} />
-              ))}
-            </h1>
-          </div>
-        ))}
+          {formData.skills.map((skills, index) => (
+            <div className='ml-4 mb-4 flex gap-2' key={index}>
+              <h1 className='font-semibold'>{skills.skill}</h1>
+              <h1>
+                {Array.from({ length: skills.rating }, (_, i) => (
+                  <ThunderboltOutlined key={i} />
+                ))}
+              </h1>
+            </div>
+          ))}
         </div>
       </div>
     </div>

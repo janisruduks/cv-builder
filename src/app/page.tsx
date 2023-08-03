@@ -19,9 +19,11 @@ export default function Home() {
         <Layout>
           <Header className="bg-white text-blue-500 shadow-sm flex flex-row">
             <Link href="/" className="font-bold">
-              <div className='flex-row flex'>
+              <div className='md:flex-row md:flex flex flex-row'>
+                <div>
                 <Image width='64' height="64" alt='logo' src='/logo.png' />
-                Resume Builder v.0002
+                </div>
+                CV Builder
               </div>
             </Link>
             <div className="flex flex-grow justify-end">
@@ -37,7 +39,7 @@ export default function Home() {
         </Layout>
         <div className="container mx-auto md:p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="overflow-y-auto h-screen">
+            <div className="md:overflow-y-auto md:h-screen">
               <BasicForm />
               <EducationForm />
               <WorkForm />
@@ -45,7 +47,7 @@ export default function Home() {
               <SkillsForm />
             </div>
             <div>
-              <div className="md:p-2">
+              <div className="md:p-2 scale-90">
                 <PageCV />
                 <div className="m-3">
                   <Button
