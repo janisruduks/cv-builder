@@ -20,7 +20,7 @@ export default function Home() {
           <Header className="bg-white text-blue-500 shadow-sm flex flex-row">
             <Link href="/" className="font-bold">
               <div className='flex-row flex'>
-                <Image width='64' height="128" alt='logo' src='/../public/logo.png' />
+                <Image width='64' height="64" alt='logo' src='/logo.png' />
                 Resume Builder v.0002
               </div>
             </Link>
