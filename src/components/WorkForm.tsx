@@ -1,4 +1,4 @@
-import { WorkData } from './FormTypes';
+import { WorkData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
 import { Form, Input, Typography, Button } from "antd";
 

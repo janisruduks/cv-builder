@@ -36,7 +36,6 @@ export default function Home() {
               </GitHubButton>
             </div>
           </Header>
-        </Layout>
         <div className="container mx-auto md:p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="md:overflow-y-auto md:h-screen">
@@ -47,7 +46,7 @@ export default function Home() {
               <SkillsForm />
             </div>
             <div>
-              <div className="md:p-2 scale-90">
+              <div className="md:p-2 scale-90 md:scale-100">
                 <PageCV />
                 <div className="m-3">
                   <Button
@@ -62,6 +61,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </Layout>
       </FormDataProvider>
     </main>
   );

@@ -1,4 +1,4 @@
-import { projectData } from './FormTypes';
+import { projectData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
 import { Form, Input, Typography, Button } from "antd";
 

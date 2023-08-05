@@ -2,7 +2,6 @@ import React from 'react';
 import { MailOutlined, PhoneOutlined, LinkOutlined, GlobalOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { useFormData } from './FormDataContext';
 
-
 export default function PageCV() {
   const { formData } = useFormData();
   return (
@@ -11,27 +10,35 @@ export default function PageCV() {
         <h1 className="text-4xl font-bold">
           {formData.information.name}
         </h1>
-        <hr className='w-1/2 border border-black' />
+        {formData.information.name || formData.information.objective ? (
+          <hr className='w-1/2 border border-black' />
+        ) : null}
         <h1 className='mb-4 text-xl'>
           {formData.information.objective}
         </h1>
       </div>
       <div className='flex items-center justify-center'>
-        <div className="flex gap-2 items-center font-light text-xs md:text-md sm:scale-100 flex-wrap justify-center">
+        <div className="flex gap-2 items-center font-light text-md md:text-md sm:scale-100 flex-wrap justify-center">
           <div className='flex gap-1 items-center'>
-            <MailOutlined />
+            {formData.information.email ? <MailOutlined /> : null}
             <div>{formData.information.email}</div>
           </div>
           <div className='flex gap-1 items-center'>
-            <PhoneOutlined />
+            {formData.information.phone ? <PhoneOutlined /> : null}
             <div>{formData.information.phone}</div>
           </div>
           <div className='flex gap-1 items-center'>
-            <LinkOutlined />
-            <div>{formData.information.website}</div>
+            {formData.information.website ? <LinkOutlined /> : null}
+            <a href={formData.information.website?.startsWith("http")
+              ? formData.information.website
+              : `https://${formData.information.website}`
+            }
+            >
+              {formData.information.website}
+            </a>
           </div>
           <div className='flex gap-1 items-center'>
-            <GlobalOutlined />
+            {formData.information.location ? <GlobalOutlined /> : null}
             <div>{formData.information.location}</div>
           </div>
         </div>
@@ -41,8 +48,8 @@ export default function PageCV() {
       </div>
       <div className='mr-8 ml-8 mt-3'>
         <div className='flex flex-row gap-2 p-3 items-center'>
-          <div className='w-12 h-2 bg-black rounded-lg' />
-          <h2 className='font-bold'>EDUCATION</h2>
+          {formData.education.length > 0 ? <div className='w-12 h-2 bg-black rounded-lg' /> : null}
+          {formData.education.length > 0 ? <h2 className='font-bold'>EDUCATION</h2> : null}
         </div>
         {formData.education.map((edu, index) => (
           <div className='ml-4 mb-4 flex' key={index}>
@@ -57,8 +64,8 @@ export default function PageCV() {
           </div>
         ))}
         <div className='flex flex-row gap-2 p-3 items-center'>
-          <div className='w-12 h-2 bg-black rounded-lg' />
-          <h2 className='font-bold'>WORK EXPERIENCE</h2>
+          {formData.work.length > 0 ? <div className='w-12 h-2 bg-black rounded-lg font-bold' /> : null}
+          {formData.work.length > 0 ? <h2 className='font-bold'>WORK EXPERIENCE</h2> : null}
         </div>
         {formData.work.map((work, index) => (
           <div className='ml-4 mb-4 flex' key={index}>
@@ -73,8 +80,8 @@ export default function PageCV() {
           </div>
         ))}
         <div className='flex flex-row gap-2 p-3 items-center'>
-          <div className='w-12 h-2 bg-black rounded-lg' />
-          <h2 className='font-bold'>PROJECTS</h2>
+          {formData.project.length > 0 ? <div className='w-12 h-2 bg-black rounded-lg' /> : null}
+          {formData.project.length > 0 ? <h2 className='font-bold'>PROJECTS</h2> : null}
         </div>
         {formData.project.map((project, index) => (
           <div className='ml-4 mb-4 flex' key={index}>
@@ -83,7 +90,10 @@ export default function PageCV() {
               <div className='font-light whitespace-pre-wrap break-words'>{project.description}</div>
             </div>
             <div className='basis-1/6 flex items-center'>
-              <a href={project.link} className="font-light whitespace-nowrap flex items-center">
+              <a
+                href={project.link.startsWith("http") ? project.link : `https://${project.link}`}
+                className="font-light whitespace-nowrap flex items-center"
+              >
                 <LinkOutlined style={{ fontSize: 10 }} />
                 project link
               </a>
@@ -91,8 +101,8 @@ export default function PageCV() {
           </div>
         ))}
         <div className='flex flex-row gap-2 p-3 items-center'>
-          <div className='w-12 h-2 bg-black rounded-lg' />
-          <h2 className='font-bold'>SKILLS</h2>
+          {formData.skills.length > 0 ? <div className='w-12 h-2 bg-black rounded-lg' /> : null}
+          {formData.skills.length > 0 ? <h2 className='font-bold'>SKILLS</h2> : null}
         </div>
         <div className='flex flex-wrap'>
           {formData.skills.map((skills, index) => (

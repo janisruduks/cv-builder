@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { FormData } from './FormTypes';
+import { FormData } from '../types/FormTypes';
 
 interface FormDataContextValue {
   formData: FormData;

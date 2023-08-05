@@ -1,4 +1,4 @@
-import { skillsData } from "./FormTypes";
+import { skillsData } from "../types/FormTypes";
 import { useFormData } from "./FormDataContext";
 import { Form, Input, Typography, Button, Rate } from "antd";
 import { ThunderboltOutlined } from '@ant-design/icons';

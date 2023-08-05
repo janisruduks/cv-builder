@@ -1,4 +1,4 @@
-import { EducationData } from '@/components/FormTypes';
+import { EducationData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
 import { Form, Input, Typography, Button } from "antd";
 
