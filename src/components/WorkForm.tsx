@@ -1,7 +1,7 @@
 import { WorkData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
 import { Form, Input, Typography } from "antd";
-import { PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
+import { PlusCircleTwoTone, DeleteTwoTone } from '@ant-design/icons';
 
 
 export default function WorkForm() {
@@ -45,12 +45,11 @@ export default function WorkForm() {
             <Typography.Title level={4}>
                 Work Experience
             </Typography.Title>
+            <div className='flex flex-row gap-3 justify-end'>
+                <PlusCircleTwoTone onClick={handleAddWork} />
+            </div>
             {formData.work.map((work: WorkData, index: number) => (
                 <div key={index}>
-                    <div className='flex flex-row gap-3 justify-end'>
-                        <MinusCircleTwoTone onClick={() => handleRemoveWork(index)} />
-                        <PlusCircleTwoTone onClick={handleAddWork} />
-                    </div>
                     <Form layout='vertical' className='pt-3'>
                         <div className="flex flex-row gap-5">
                             <div className="basis-2/3">
@@ -99,6 +98,9 @@ export default function WorkForm() {
                                     />
                                 </Form.Item>
                             </div>
+                        </div>
+                        <div className='flex gap-1 flex-row items-center justify-end'>
+                            <DeleteTwoTone onClick={() => handleRemoveWork(index)} />
                         </div>
                     </Form>
                 </div>

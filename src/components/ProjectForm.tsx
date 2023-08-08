@@ -1,7 +1,7 @@
 import { projectData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
 import { Form, Input, Typography } from "antd";
-import { PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
+import { PlusCircleTwoTone, DeleteTwoTone } from '@ant-design/icons';
 
 export default function ProjectForm() {
     const { formData, setFormData } = useFormData();
@@ -45,12 +45,11 @@ export default function ProjectForm() {
             <Typography.Title level={4}>
                 Projects
             </Typography.Title>
+            <div className='flex flex-row gap-3 justify-end'>
+                <PlusCircleTwoTone onClick={handleAddProject} />
+            </div>
             {formData.project.map((project: projectData, index: number) => (
                 <div key={index}>
-                    <div className='flex flex-row gap-3 justify-end'>
-                        <MinusCircleTwoTone size={32} onClick={() => handleRemoveProject(index)} />
-                        <PlusCircleTwoTone onClick={handleAddProject} />
-                    </div>
                     <Form layout='vertical' className='pt-3'>
                         <div className="flex flex-row gap-5">
                             <div className="basis-2/4">
@@ -86,6 +85,9 @@ export default function ProjectForm() {
                                     placeholder="Created most complex and 🔥blazingly🔥 fast CV generator"
                                 />
                             </Form.Item>
+                        </div>
+                        <div className='flex gap-1 flex-row items-center justify-end'>
+                            <DeleteTwoTone onClick={() => handleRemoveProject(index)} />
                         </div>
                     </Form>
                 </div>
