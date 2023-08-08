@@ -1,6 +1,7 @@
 import { EducationData } from '../types/FormTypes';
 import { useFormData } from './FormDataContext';
-import { Form, Input, Typography, Button } from "antd";
+import { Form, Input, Typography } from "antd";
+import { PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
 
 export default function EducationForm() {
     const { formData, setFormData } = useFormData();
@@ -46,6 +47,10 @@ export default function EducationForm() {
             </Typography.Title>
             {formData.education.map((edu: EducationData, index: number) => (
                 <div key={index}>
+                    <div className='flex flex-row gap-3 justify-end'>
+                        <MinusCircleTwoTone size={32} onClick={() => handleRemoveEducation(index)} />
+                        <PlusCircleTwoTone onClick={handleAddEducation} />
+                    </div>
                     <Form layout="vertical" className="pt-3">
                         <div className="flex flex-row gap-5">
                             <div className="basis-2/3">
@@ -89,14 +94,8 @@ export default function EducationForm() {
                             />
                         </Form.Item>
                     </Form>
-                    <div className='flex flex-row gap-3 justify-end'>
-                        <Button onClick={() => handleRemoveEducation(index)}>Remove</Button>
-                    </div>
                 </div>
             ))}
-            <Button type='primary' className="bg-blue-500" onClick={handleAddEducation}>
-                Add Education
-            </Button>
         </div>
     );
 }

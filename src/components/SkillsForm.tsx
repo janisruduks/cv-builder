@@ -1,7 +1,7 @@
 import { skillsData } from "../types/FormTypes";
 import { useFormData } from "./FormDataContext";
-import { Form, Input, Typography, Button, Rate } from "antd";
-import { ThunderboltOutlined } from '@ant-design/icons';
+import { Form, Input, Typography, Rate } from "antd";
+import { ThunderboltOutlined, PlusCircleTwoTone, MinusCircleTwoTone } from '@ant-design/icons';
 
 export default function SkillsForm() {
     const { formData, setFormData } = useFormData();
@@ -56,6 +56,10 @@ export default function SkillsForm() {
             </Typography.Title>
             {formData.skills.map((skills: skillsData, index: number) => (
                 <div key={index}>
+                    <div className='flex flex-row gap-3 justify-end'>
+                        <MinusCircleTwoTone onClick={() => handleRemoveSkills(index)} />
+                        <PlusCircleTwoTone onClick={handleAddSkills} />
+                    </div>
                     <Form layout='vertical' className='pt-3'>
                         <div className="flex flex-row gap-5">
                             <div className="basis-2/4">
@@ -79,14 +83,8 @@ export default function SkillsForm() {
                             </div>
                         </div>
                     </Form>
-                    <div className='flex flex-row gap-3 justify-end'>
-                        <Button onClick={() => handleRemoveSkills(index)}>Remove</Button>
-                    </div>
                 </div>
             ))}
-            <Button type='primary' className="bg-blue-500" onClick={handleAddSkills}>
-                Add Skill
-            </Button>
         </div>
     )
 }
