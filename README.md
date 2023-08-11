@@ -3,6 +3,9 @@
 
 This is a Next.js project designed to help users easily create and download their CVs in PDF format. The app offers a user-friendly interface that allows users to customize their CV content, preview changes in real-time, and save the final result as a downloadable PDF file.
 
+## Live preview
+https://cv-builder-hazel.vercel.app/
+
 ## Features
 
 - Live preview
